@@ -49,7 +49,7 @@ li{
   --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #1c2329; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #5f0c0c; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #edc2c2; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --surface-color: #ebdddd; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
@@ -57,7 +57,7 @@ li{
 :root {
   --nav-color: #212529;  /* The default color of the main navmenu links */
   --nav-hover-color: #bf5734; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+  --nav-mobile-background-color: #c09393; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #441a1a; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #212529; /* Used for navigation links of the dropdown items in the navigation menu. */
   --nav-dropdown-hover-color: #5f0c0c; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
@@ -128,7 +128,7 @@ h6 {
 .php-email-form .sent-message {
   display: none;
   color: #ffffff;
-  background: #059652;
+  background:#3f0909;
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
@@ -175,7 +175,10 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
 }
-
+#logoabout{
+  color:white;
+  font-family: 'Times New Roman', Times, serif;
+}
 .header .logo {
   line-height: 1;
 }
