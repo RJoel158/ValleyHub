@@ -175,6 +175,9 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
 }
+#lbl{
+  color: #3f0909;
+}
 #logoabout{
   color:white;
   font-family: 'Times New Roman', Times, serif;
