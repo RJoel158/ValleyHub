@@ -3,21 +3,25 @@ $(document).ready(function() {
 
     // Función para registrar una persona
     $('#btnRegistrar').click(function() {
-        const nombre = $('#name').val();
+        const nombre = $('#name').val(); // Eliminar espacios en blanco
         const mail = $('#email').val();
         const asunto = $('#subject').val();
         const msg = $('#Mensaje').val();
-        
-        if (nombre && mail && asunto && msg) {
+
+        // Validar que todos los campos tengan contenido no vacío
+        if (nombre==""||mail==""||asunto==""||msg=="") {
+            alert("Por favor, complete todos los campos.");
+        } else {
             registros.push({ nombre, mail, asunto, msg });
-            $('#nombre').val('');
+            
+            // Limpiar campos
+            $('#name').val('');
             $('#email').val('');
             $('#subject').val('');
             $('#Mensaje').val('');
+            
             alert("Registro exitoso");
             console.log(registros);
-        } else {
-            alert("Por favor, complete todos los campos.");
         }
     });
 });
