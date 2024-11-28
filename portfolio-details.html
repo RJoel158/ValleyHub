@@ -26,6 +26,13 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-python.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css" rel="stylesheet" />
+  <script>hljs.highlightAll();</script>
+
+
 
   <!-- =======================================================
   * Template Name: Active
@@ -67,11 +74,11 @@
     <!-- Page Title -->
     <div class="page-title light-background">
       <div class="container">
-        <h1>Portfolio Details</h1>
+        <h1>Detalles Proyecto</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Portfolio Details</li>
+            <li><a href="index.html">Inicio</a></li>
+            <li id="c" class="current">Detalles Proyecto</li>
           </ol>
         </nav>
       </div>
@@ -105,19 +112,19 @@
           <div class="swiper-wrapper align-items-center">
 
             <div class="swiper-slide">
-              <img src="assets/img/portfolio/app-1.jpg" alt="">
+              <img src="assets/img/programacion-Raspberry-Pi.webp" alt="">
             </div>
 
             <div class="swiper-slide">
-              <img src="assets/img/portfolio/product-1.jpg" alt="">
+              <img src="assets/img/proy ej.jpg" alt="">
             </div>
 
             <div class="swiper-slide">
-              <img src="assets/img/portfolio/branding-1.jpg" alt="">
+              <img src="assets/img/realizacion-de-proyectos-con-arduino.webp" alt="">
             </div>
 
             <div class="swiper-slide">
-              <img src="assets/img/portfolio/books-1.jpg" alt="">
+              <img src="assets/img/" alt="">
             </div>
 
           </div>
@@ -130,33 +137,79 @@
 
           <div class="col-lg-8" data-aos="fade-up">
             <div class="portfolio-description">
-              <h2>This is an example of portfolio details</h2>
+              <h2>Chapa inteligente con reconocimiento facial </h2>
               <p>
-                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+                Este proyecto explora las distintas posibilades de trabajo con herramientas electronicas y software con aplicacion de un modelo de aprendizaje supervisado.
               </p>
               <p>
-                Amet consequatur qui dolore veniam voluptatem voluptatem sit. Non aspernatur atque natus ut cum nam et. Praesentium error dolores rerum minus sequi quia veritatis eum. Eos et doloribus doloremque nesciunt molestiae laboriosam.
+                Para el circuito electronico se hizo uso de los siguientes items: <br>
+                <b>~</b><a href="https://ventas.ardunel.com.bo/tarjetas-arduino-y-otros/5-arduino-uno-chip-smd-atmega-328p-cable-usb.html">Arduino Uno SMD</a><br>
+                <b>~</b><a href="https://tienda.sawers.com.bo/modulo-relay-1ch-12vdc-optoacoplado?search=relay&page=2">Modulo Relay</a><br>
+                <b>~</b><a href="https://tienda.sawers.com.bo/chapa-solenoide-tau-0837dl-6v-?search=solenoide">Chapa Solenoide 12v</a><br>
+                <b>~</b><a href="https://tienda.sawers.com.bo/kit-de-resistencias-14?search=resistencia">Resistencias 220Ω</a><br>
+                <b>~</b>Jumpers
+                <img src="assets/img/cir.png" alt="" srcset="">
+                
               </p>
 
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                  <span>Proyecto pensado en la efectividad de los actuales sistemas de seguridad con una verificacion de dos pasos de  manera intuitiva.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <div>
-                  <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
+                  <img src="assets/img/grupo.png" class="testimonial-img" alt="">
+                  <h3>Joel Saavedra && Rodrigo Gutierrez</h3>
+                  <h4>Desarrolladores</h4>
                 </div>
               </div>
+              <h3>Código de reconocimiento facial</h3>
+  <pre><code class="language-python">
+import cv2
+import numpy as np
 
+# Carga del modelo entrenado
+model = cv2.face.LBPHFaceRecognizer_create()
+model.read("modelo_entrenado.xml")
+
+# Inicialización de la cámara
+camera = cv2.VideoCapture(0)
+
+while True:
+    ret, frame = camera.read()
+    if not ret:
+        break
+
+    # Convertir a escala de grises
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    
+    # Reconocimiento facial
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+    for (x, y, w, h) in faces:
+        roi_gray = gray[y:y + h, x:x + w]
+        id, confidence = model.predict(roi_gray)
+        if confidence < 50:
+            cv2.putText(frame, f"ID: {id}", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+        else:
+            cv2.putText(frame, "Desconocido", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
+
+    cv2.imshow("Reconocimiento Facial", frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+camera.release()
+cv2.destroyAllWindows()
+  </code></pre>
+</div>
               <p>
-                Impedit ipsum quae et aliquid doloribus et voluptatem quasi. Perspiciatis occaecati earum et magnam animi. Quibusdam non qui ea vitae suscipit vitae sunt. Repudiandae incidunt cumque minus deserunt assumenda tempore. Delectus voluptas necessitatibus est.
+                El software mostrado fue desarrollado en Python 3.12 version, con el uso de bibliotecas como <a href="https://pypi.org/project/opencv-python/">OpenCv</a>, <a href="https://ai.google.dev/edge/mediapipe/solutions/guide?hl=es-419">MediaPipe</a>
+                ,<a href="https://pypi.org/project/imutils/">Imutils</a>,  <a href="https://docs.python.org/3/library/time.html">time</a> y <a href="https://docs.python.org/es/3.10/library/os.html">OS</a>
               </p>
 
               <p>
-                Sunt voluptatum sapiente facilis quo odio aut ipsum repellat debitis. Molestiae et autem libero. Explicabo et quod necessitatibus similique quis dolor eum. Numquam eaque praesentium rem et qui nesciunt.
+                El editor de codigo usado fue <a href="https://www.jetbrains.com/es-es/pycharm/download/?section=windows">PyCharm</a> desarrollado por <a href="https://www.jetbrains.com">JetBrains</a>. El SoftWare del proyecto consta de 3 partes (Capturador de rostros, Entrenador y Reconocedor). Por motivos de derechos de autor solo les proporcionamos
+                  el ultimo codigo mencionado, contactanos mediante el formulario en la parte inferior al blog del proyecto para poder ser nuestro colaborador.
               </p>
 
             </div>
@@ -164,13 +217,13 @@
 
           <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
             <div class="portfolio-info">
-              <h3>Project information</h3>
+              <h3>Informacion del Proyecto</h3>
               <ul>
-                <li><strong>Category</strong> Web design</li>
-                <li><strong>Client</strong> ASU Company</li>
-                <li><strong>Project date</strong> 01 March, 2020</li>
-                <li><strong>Project URL</strong> <a href="#">www.example.com</a></li>
-                <li><a href="#" class="btn-visit align-self-start">Visit Website</a></li>
+                <li id="c"><strong>Categoria</strong>Electronica digital aplicada</li>
+                <li id="c"><strong>Colaboradores</strong>Rodrigo Gutierrez, Joel Saavedra</li>
+                <li id="c"><strong>Fecha inicio</strong> 20 Noviembre, 2024</li>
+                <li id="c"><strong>URL</strong> <a href="#">www.example.com</a></li>
+                <li id="c"><a href="#" class="btn-visit align-self-start">Visitar</a></li>
               </ul>
             </div>
           </div>
@@ -188,49 +241,43 @@
       <div class="row g-4">
         <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
           <div class="widget">
-            <h3 class="widget-heading">About Us</h3>
+            <h3 class="widget-heading">Acerca Nuestro</h3>
             <p class="mb-4">
-              There live the blind texts. Separated they live in Bookmarksgrove
-              right at the coast of the Semantics, a large language ocean.
+              Somos un equipo de estudiantes apasionados por la tecnología y el desarrollo de soluciones innovadoras. Inspirados por las necesidades y el potencial de nuestra comunidad en la Universidad del Valle, creamos esta plataforma para conectar ideas, proyectos y talentos en el ámbito de la Ingeniería en Sistemas Informáticos.
             </p>
             <p class="mb-0">
-              <a href="#" class="btn-learn-more">Learn more</a>
+              <a href="#" class="btn-learn-more">Leer</a>
             </p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 ps-lg-5 mb-3 mb-md-0">
           <div class="widget">
-            <h3 class="widget-heading">Navigation</h3>
+            <h3 class="widget-heading">Navegacion</h3>
             <ul class="list-unstyled float-start me-5">
-              <li><a href="#">Overview</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Find Buyers</a></li>
-            </ul>
-            <ul class="list-unstyled float-start">
-              <li><a href="#">Overview</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Services</a></li>
+              <li><a href="#">Menu</a></li>
+              <li><a href="#">Sobre Nosotros</a></li>
+              <li><a href="#">Encontrar colaboradores</a></li>
             </ul>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 pl-lg-5">
           <div class="widget">
-            <h3 class="widget-heading">Recent Posts</h3>
+            <h3 class="widget-heading">Post Recientes</h3>
             <ul class="list-unstyled footer-blog-entry">
               <li>
-                <span class="d-block date">May 3, 2020</span>
-                <a href="#">There live the Blind Texts</a>
+                <span class="d-block date">Mayo 30, 2024</span>
+                <a href="#">Desarollo Arduino</a>
               </li>
               <li>
-                <span class="d-block date">May 3, 2020</span>
-                <a href="#">Separated they live in Bookmarksgrove right</a>
+                <span class="d-block date">Mayo 30, 2024</span>
+                <a href="#">Desarollo movil cultivos</a>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 pl-lg-5">
           <div class="widget">
-            <h3 class="widget-heading">Connect</h3>
+            <h3 class="widget-heading">Conecta con nosotros</h3>
             <ul class="list-unstyled social-icons light mb-3">
               <li>
                 <a href="#"><span class="bi bi-facebook"></span></a>
@@ -252,19 +299,19 @@
 
           <div class="widget">
             <div class="footer-subscribe">
-              <h3 class="widget-heading">Subscribe</h3>
+              <h3 class="widget-heading">Suscribete</h3>
               <form action="forms/newsletter.php" method="post" class="php-email-form">
                 <div class="mb-2">
-                  <input type="text" class="form-control" name="email" placeholder="Enter your email">
+                  <input type="text" class="form-control" name="email" placeholder="Ingresa tu E-mail">
 
                   <button type="submit" class="btn btn-link">
                     <span class="bi bi-arrow-right"></span>
                   </button>
                 </div>
-                <div class="loading">Loading</div>
+                <div class="loading">Cargando</div>
                 <div class="error-message"></div>
                 <div class="sent-message">
-                  Your subscription request has been sent. Thank you!
+                  Tu solicitud de servicio ha sido enviada, Gracias!
                 </div>
               </form>
             </div>
@@ -273,13 +320,13 @@
       </div>
 
       <div class="copyright d-flex flex-column flex-md-row align-items-center justify-content-md-between">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Active.</strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Active.</strong> <span>Todos los derechos reservados</span></p>
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->
           <!-- You can delete the links only if you've purchased the pro version. -->
           <!-- Licensing information: https://bootstrapmade.com/license/ -->
           <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
+          Diseñado con <a href="https://bootstrapmade.com/">Bootstrap</a> Distribuido por <a href="https://themewagon.com">ThemeWagon</a>
         </div>
       </div>
     </div>
