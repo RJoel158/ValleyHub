@@ -3,10 +3,10 @@ $(document).ready(function() {
 
     // Función para registrar una persona
     $('#btnRegistrar').click(function() {
-        const nombre = $('#name').val().trim();
-        const mail = $('#email').val().trim();
-        const asunto = $('#subject').val().trim();
-        const msg = $('#Mensaje').val().trim();
+        const nombre = $('#name').val();
+        const mail = $('#email').val();
+        const asunto = $('#subject').val();
+        const msg = $('#Mensaje').val();
         
         if (nombre && mail && asunto && msg) {
             registros.push({ nombre, mail, asunto, msg });
@@ -15,6 +15,7 @@ $(document).ready(function() {
             $('#subject').val('');
             $('#Mensaje').val('');
             alert("Registro exitoso");
+            console.log(registros);
         } else {
             alert("Por favor, complete todos los campos.");
         }
